@@ -1,0 +1,16 @@
+{
+  "name": "amp-storyblok",
+  "version": "1.0.0",
+  "description": "Node app with AMP & Storyblok",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "dawntraoz",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.3",
+    "storyblok-js-client": "^2.3.0"
+  }
+}
