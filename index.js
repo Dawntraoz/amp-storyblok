@@ -2,8 +2,6 @@
 
 const express = require('express');
 const exphbs = require('express-handlebars');
-const fs = require('fs')
-const https = require('https')
 const url = require('url');
 const app = express();
 
@@ -13,7 +11,14 @@ app.use('/public', express.static('public'));
 app.engine('.hbs', exphbs({
   defaultLayout: 'main',
   extname: '.hbs',
-  partialsDir: 'views/components/'
+  partialsDir: 'views/components/',
+  helpers: {
+    section: function(name, options) { 
+      if (!this._sections) this._sections = {};
+        this._sections[name] = options.fn(this); 
+        return null;
+      }
+  }   
 }));
 
 app.set('view engine', '.hbs');
@@ -25,7 +30,16 @@ const StoryblokClient = require('storyblok-js-client');
 // 2. Initialize the client
 // You can use this preview token for now, we'll change it later
 let Storyblok = new StoryblokClient({
-  accessToken: 'pWxIU0bXuQky6eygIOkqMgtt'
+  accessToken: 'PkVzPJTMjaaypMw5U1KDrgtt',
+  cache: {
+    type: 'memory'
+  }
+});
+
+// Define a clear cache route for the publishing hook.
+app.get('/clear_cache', function(req, res) {
+  Storyblok.flushCache();
+  res.send('Cache flushed!');
 });
 
 // 3. Define a wilcard route to get the story mathing the url path
@@ -47,9 +61,6 @@ app.get('/*', function(req, res) {
     });
 });
 
-https.createServer({
-    key: fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.cert')
-}, app).listen(4300, function() {
+app.listen(4300, function() {
   console.log('Example app listening on port 4300!');
 });
