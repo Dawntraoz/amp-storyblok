@@ -13,9 +13,8 @@
     "express": "^4.17.1",
     "express-handlebars": "^4.0.3",
     "postcss": "^7.0.28",
-    "storyblok-js-client": "^2.3.0"
-  },
-  "devDependencies": {
+    "postcss-cli": "^7.1.1",
+    "storyblok-js-client": "^2.3.0",
     "tailwindcss": "^1.4.4"
   },
   "engines": {
