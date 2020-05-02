@@ -70,6 +70,6 @@ app.get('/*', function(req, res) {
     });
 });
 
-app.listen(8702, function() {
-  console.log('Example app listening on port 8702!');
+app.listen((process.env.PORT || 4300), function() {
+  console.log('Example app listening on port 4300!');
 });
