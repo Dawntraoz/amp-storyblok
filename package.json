@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^4.0.3",
+    "postcss": "^7.0.28",
     "storyblok-js-client": "^2.3.0",
     "yarn": "^1.22.4"
   },
