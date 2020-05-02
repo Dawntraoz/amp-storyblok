@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const url = require('url');
 const fs = require('fs');
 const app = express();
+let stylesheet = '';
 
 app.use('/public', express.static('public'));
 
@@ -24,6 +25,13 @@ app.engine('.hbs', exphbs({
 
 app.set('view engine', '.hbs');
 app.set('views', 'views');
+
+fs.readFile('./public/assets/style.css', function (err, html) {
+  if (err) {
+    throw err; 
+  }       
+  stylesheet = html;
+});
 
 // 1. Require the Storyblok JS client
 const StoryblokClient = require('storyblok-js-client');
@@ -47,13 +55,6 @@ app.get('/clear_cache', function(req, res) {
 app.get('/*', function(req, res) {
   var path = url.parse(req.url).pathname;
   path = path == '/' ? 'home' : path;
-  var stylesheet = '';//require('./public/assets/style.css')();
-  fs.readFile('./public/assets/style.css', function (err, html) {
-    if (err) {
-      throw err; 
-    }       
-    stylesheet = html;
-  });
 
   Storyblok
     .get(`cdn/stories/${path}`, {
