@@ -4,7 +4,7 @@
   "description": "Node app with AMP & Storyblok",
   "main": "index.js",
   "scripts": {
-    "start": "yarn build:css && node ./index.js",
+    "start": "yarn build:css && node index.js",
     "build:css": "postcss public/assets/tailwind.css -o public/assets/style.css"
   },
   "author": "dawntraoz",
