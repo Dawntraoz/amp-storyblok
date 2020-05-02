@@ -15,7 +15,8 @@
     "postcss": "^7.0.28",
     "postcss-cli": "^7.1.1",
     "storyblok-js-client": "^2.3.0",
-    "tailwindcss": "^1.4.4"
+    "tailwindcss": "^1.4.4",
+    "cssnano": "^4.1.10"
   },
   "engines": {
     "node": "10.15.3",

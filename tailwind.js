@@ -1,7 +1,10 @@
 module.exports = {
-  purge: [
-    './views/**/*.hbs',
-  ],
+  purge: {
+    enabled: true,
+    content: [
+      './views/**/*.hbs',
+    ],
+  },
   theme: {
     extend: {},
     container: {
