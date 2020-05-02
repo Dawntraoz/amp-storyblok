@@ -4,7 +4,8 @@
   "description": "Node app with AMP & Storyblok",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "start": "yarn build:css && node ./index.js",
+    "build:css": "postcss public/assets/tailwind.css -o public/assets/style.css"
   },
   "author": "dawntraoz",
   "license": "MIT",
@@ -12,5 +13,8 @@
     "express": "^4.17.1",
     "express-handlebars": "^4.0.3",
     "storyblok-js-client": "^2.3.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^1.4.4"
   }
 }

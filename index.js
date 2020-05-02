@@ -3,6 +3,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const url = require('url');
+const fs = require('fs');
 const app = express();
 
 app.use('/public', express.static('public'));
@@ -46,6 +47,13 @@ app.get('/clear_cache', function(req, res) {
 app.get('/*', function(req, res) {
   var path = url.parse(req.url).pathname;
   path = path == '/' ? 'home' : path;
+  var stylesheet = '';//require('./public/assets/style.css')();
+  fs.readFile('./public/assets/style.css', function (err, html) {
+    if (err) {
+      throw err; 
+    }       
+    stylesheet = html;
+  });
 
   Storyblok
     .get(`cdn/stories/${path}`, {
@@ -53,6 +61,7 @@ app.get('/*', function(req, res) {
     })
     .then((response) => {
       res.render('index', {
+        style: stylesheet,
         story: response.data.story
       });
     })
