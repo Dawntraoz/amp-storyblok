@@ -67,7 +67,10 @@ app.get('/*', function(req, res) {
       });
     })
     .catch((error) => {
-      res.send(error);
+      res.render('index', {
+        style: stylesheet,
+        story: {}
+      });
     });
 });
 
