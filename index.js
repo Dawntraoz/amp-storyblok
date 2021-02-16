@@ -1,5 +1,6 @@
 'use strict';
 
+require('dotenv').config();
 const express = require('express');
 const exphbs = require('express-handlebars');
 const url = require('url');
@@ -38,8 +39,9 @@ const StoryblokClient = require('storyblok-js-client');
 
 // 2. Initialize the client
 // You can use this preview token for now, we'll change it later
+const token = process.env.ACCESS_TOKEN;
 let Storyblok = new StoryblokClient({
-  accessToken: 'PkVzPJTMjaaypMw5U1KDrgtt',
+  accessToken: token,
   cache: {
     type: 'memory'
   }
